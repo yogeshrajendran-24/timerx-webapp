@@ -40,9 +40,9 @@ pipeline {
                     sh """
                     ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
                       docker pull ${DOCKER_IMAGE}:latest &&
-                      docker stop timerx-webapp || true &&
-                      docker rm timerx-webapp || true &&
-                      docker run -d --name timerx-webapp -p 80:80 ${DOCKER_IMAGE}:latest
+                      docker stop timerx || true &&
+                      docker rm timerx || true &&
+                      docker run -d --name timerx -p 80:80 ${DOCKER_IMAGE}:latest
                     '
                     """
                 }
