@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimerX - Free Online Timer App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <header>
+            <h1>⏱️ TimerX</h1>
+            <p class="subtitle">Free online timerX web app for everyone!</p>
+        </header>
+
+        <div class="timer-display">
+            <div class="countdown-info">
+                <span class="label">Ends at</span>
+                <span id="endTime">--:--</span>
+            </div>
+            <div id="timerDisplay" class="timer-value">00:05:00</div>
+        </div>
+
+        <div class="timer-input">
+            <label>Target:</label>
+            <div class="time-inputs">
+                <input type="number" id="hours" min="00" max="23" value="00">
+                <span>:</span>
+                <input type="number" id="minutes" min="00" max="59" value="05">
+                <span>:</span>
+                <input type="number" id="seconds" min="00" max="59" value="00">
+            </div>
+            <small>Click to edit</small>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">Start</button>
+            <button id="pauseBtn" class="btn btn-secondary">Pause</button>
+            <button id="resetBtn" class="btn btn-secondary">Reset</button>
+        </div>
+
+        <div class="quick-buttons">
+            <button class="quick-btn" data-time="60">1 Min</button>
+            <button class="quick-btn" data-time="300">5 Min</button>
+            <button class="quick-btn" data-time="600">10 Min</button>
+            <button class="quick-btn" data-time="900">15 Min</button>
+            <button class="quick-btn" data-time="1200">20 Min</button>
+            <button class="quick-btn" data-time="1800">30 Min</button>
+            <button class="quick-btn" data-time="2700">45 Min</button>
+            <button id="settingsToggle" class="btn-settings">Settings</button>
+        </div>
+
+        <div id="settingsPanel" class="settings-section">
+            <h3>⏱️ Count Up Timer</h3>
+            <label class="checkbox">
+                <input type="checkbox" id="countUpToggle">
+                <span>Count up from 00:00:00 to your target time</span>
+            </label>
+
+            <div class="settings-group">
+                <h4>Reminder Message (optional)</h4>
+                <input type="text" id="reminderMessage" placeholder="Enter reminder message">
+            </div>
+
+            <div class="settings-group">
+                <h4>🚨 Alarm Sound - Click any alarm to hear it!</h4>
+                <div class="alarm-buttons">
+                    <button class="alarm-btn" data-sound="double-beep">🔔 Double Beep</button>
+                    <button class="alarm-btn" data-sound="digital-clock">📱 Digital Clock</button>
+                    <button class="alarm-btn" data-sound="ti-ti">⏰ Ti-Ti-Ti-Ti</button>
+                    <button class="alarm-btn" data-sound="dream-bells">🎐 Dream Bells</button>
+                    <button class="alarm-btn" data-sound="gentle">🌅 Gentle Wake</button>
+                    <button class="alarm-btn" data-sound="urgent">🚨 Urgent Alert</button>
+                    <button class="alarm-btn" data-sound="school">🔔 School Bell</button>
+                    <button class="alarm-btn" data-sound="8bit">🎮 8-bit Alarm</button>
+                    <button class="alarm-btn" data-sound="rooster">🐓 Rooster Call</button>
+                    <button class="alarm-btn" data-sound="wind">🎵 Wind Chimes</button>
+                    <button class="alarm-btn" data-sound="box">🎶 Musical Box</button>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h4>⏹️ Stop Sound</h4>
+                <button id="stopSoundBtn" class="btn btn-secondary">Stop</button>
+            </div>
+
+            <div class="settings-group">
+                <h4>🔊 Volume</h4>
+                <input type="range" id="volumeControl" min="0" max="100" value="50">
+                <span id="volumeValue">50%</span>
+            </div>
+
+            <div class="settings-group">
+                <h4>⏱️ Alarm Duration</h4>
+                <select id="alarmDuration">
+                    <option value="3">3 seconds</option>
+                    <option value="5" selected>5 seconds</option>
+                    <option value="10">10 seconds</option>
+                    <option value="30">30 seconds</option>
+                </select>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 TimerX</p>
+        </footer>
+    </div>
+
+    <div id="completeModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>⏰ Timer Complete!</h2>
+            <p id="completeMessage">Your timer has completed.</p>
+            <button id="okBtn" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
