@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "dockerhub-yogeshrajendran/timerx-webapp"
+        DOCKER_IMAGE = "docker.io/dockerhub-yogeshrajendran/timerx-webapp/timerx-webapp"
         EC2_HOST = "<100.27.234.136>"
     }
 
