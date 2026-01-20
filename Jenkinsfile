@@ -16,7 +16,10 @@ pipeline {
 
         stage("Build Docker Image") {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                sh """
+                    docker build -t ${IMAGE_NAME}:latest .
+                    docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:build-${BUILD_NUMBER}
+                  """
             }
         }
 
@@ -30,7 +33,10 @@ pipeline {
 
         stage("Push Image to DockerHub") {
             steps {
-                sh "docker push ${DOCKER_IMAGE}:latest"
+                sh """
+                        docker push ${IMAGE_NAME}:latest
+                        docker push ${IMAGE_NAME}:build-${BUILD_NUMBER}
+                  """
             }
         }
 
