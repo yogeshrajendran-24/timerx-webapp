@@ -16,10 +16,7 @@ pipeline {
 
         stage("Build Docker Image") {
             steps {
-                sh """
-                    docker build -t ${IMAGE_NAME}:latest .
-                    docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:build-${BUILD_NUMBER}
-                  """
+                sh ""docker build -t ${IMAGE_NAME}:latest .""
             }
         }
 
