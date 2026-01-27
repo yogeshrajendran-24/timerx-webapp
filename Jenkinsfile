@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "docker.io/yogeshrajendran/timerx-webapp"
-        EC2_HOST = "3.236.120.174"
+        EC2_HOST = "98.80.104.53"
     }
 
     stages {
