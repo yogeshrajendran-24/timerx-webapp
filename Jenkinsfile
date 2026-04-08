@@ -48,4 +48,18 @@ pipeline {
             }
         }
     }
+
+     post{
+        always{
+            sh 'echo "Pipeline finished!"'
+        }
+
+        success{
+            sh 'echo "Build Successful!!!"'
+        }
+
+        failure{
+            sh 'echo "Build failed, Sending Notification...."'
+        }
+    }
 }
