@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "docker.io/yogeshrajendran/timerx-webapp"
-        EC2_HOST = "52.1.59.194"
+        EC2_HOST = "50.19.47.198"
     }
 
     stages {
@@ -14,30 +14,23 @@ pipeline {
             }
         }
 
-        stage("Build Docker Image") {
-            steps {
-                sh """
-                docker build -t ${DOCKER_IMAGE}:latest .
-                docker tag ${DOCKER_IMAGE}:latest ${DOCKER_IMAGE}:build-${BUILD_NUMBER}
-                  """
-            }
-        }
-
-        stage("Login to DockerHub") {
-            steps {
-                withCredentials([usernamePassword(credentialsId: "dockerhub-creds", usernameVariable: "DOCKER_USER", passwordVariable: "DOCKER_PASS")]) {
-                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+        stage('Build Docker Image'){
+            steps{
+                script{
+                    dockerImage = docker.build("${DOCKER_IMAGE}:${BUILD_NUMBER}")
                 }
             }
         }
 
-        stage("Push Image to DockerHub") {
-            steps {
-                sh """
-                        docker push ${DOCKER_IMAGE}:latest
-                        docker push ${DOCKER_IMAGE}:build-${BUILD_NUMBER}
-                  """
-            }
+        stage('Push Image to DockerHub'){
+            steps{
+                script{
+                    docker.withRegistry('', 'dockerhub-creds') {
+                    dockerImage.push("${BUILD_NUMBER}")
+                    dockerImage.push("latest")
+                     }
+                }
+             }
         }
 
         stage("Deploy to AWS EC2") {
