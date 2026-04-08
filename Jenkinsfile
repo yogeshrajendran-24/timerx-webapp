@@ -25,7 +25,7 @@ pipeline {
         stage('Push Image to DockerHub'){
             steps{
                 script{
-                    docker.withRegistry('', 'dockerhub-creds') {
+                    docker.withRegistry('', 'timerx-docker-creds') {
                     dockerImage.push("${BUILD_NUMBER}")
                     dockerImage.push("latest")
                      }
